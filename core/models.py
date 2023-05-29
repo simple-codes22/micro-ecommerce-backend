@@ -13,13 +13,17 @@ class CustomUser(AbstractUser):
     def __repr__(self) -> str:
         return f"{self.customer_id} - {self.username} - {self.email}"
 
+
+def get_upload_to(instance, filename):
+    return f"Product {instance.product_id}/{filename}"
+
 class Product(models.Model):
     """The model responsible for holding the data for the products"""
     product_id = models.UUIDField(verbose_name="Product ID", default=uuid4, primary_key=True, editable=False)
     name = models.CharField(verbose_name="Product Name", max_length=100)
     description = models.TextField(verbose_name="Product Description", max_length=500)
     price = models.DecimalField(verbose_name="Price", max_digits=10, decimal_places=2)
-    image = models.ImageField(verbose_name="Product Image", upload_to=f"image/", blank=True, null=True)
+    image = models.ImageField(verbose_name="Product Image", upload_to=get_upload_to, blank=True, null=True)
     date_added = models.DateTimeField(verbose_name="Date Added", auto_now_add=True)
 
     def __repr__(self) -> str:
