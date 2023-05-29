@@ -1,6 +1,7 @@
 *.env
 db.sqlite3
 *.sqlite3
+image/*
 # */__pycache__
 # */migrations
 # *.pyc
