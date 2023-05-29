@@ -19,7 +19,7 @@ class Product(models.Model):
     name = models.CharField(verbose_name="Product Name", max_length=100)
     description = models.TextField(verbose_name="Product Description", max_length=500)
     price = models.DecimalField(verbose_name="Price", max_digits=10, decimal_places=2)
-    # image = models.ImageField(verbose_name="Product Image", upload_to="product_images", blank=True, null=True)
+    image = models.ImageField(verbose_name="Product Image", upload_to=f"image/", blank=True, null=True)
     date_added = models.DateTimeField(verbose_name="Date Added", auto_now_add=True)
 
     def __repr__(self) -> str:
