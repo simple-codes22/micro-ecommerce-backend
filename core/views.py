@@ -5,6 +5,8 @@ from .models import *
 from .serializers import *
 from django.contrib.auth import get_user_model
 
+
+
 class ProductList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
@@ -21,6 +23,33 @@ class ProductDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.D
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+class ProductImageList(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = ProductImage.objects.all()
+    serializer_class = ProductImageSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+
+class ProductImageDetail(
+        mixins.RetrieveModelMixin,
+        mixins.DestroyModelMixin,
+        generics.GenericAPIView
+    ):
+    queryset = ProductImage.objects.all()
+    serializer_class = ProductImageSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
 
 class UserList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     User = get_user_model()

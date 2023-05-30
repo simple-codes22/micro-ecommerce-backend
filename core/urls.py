@@ -14,7 +14,11 @@ urlpatterns = [
     # Product data
     path('product/', ProductList.as_view(), name="product-list"),
     path('product/<str:pk>', ProductDetail.as_view(), name="product-detail"),
-    
+
+    # Product list data and reference
+    path('product-image/', ProductImageList.as_view(), name="product-image(s)"),
+    path('product-image/<str:pk>', ProductImageDetail.as_view(), name="product-image-detail"),
+
     # Order data
     path('order/', OrderList.as_view(), name="order-list"),
     path('order/<str:pk>', OrderDetails.as_view(), name="order-details"),

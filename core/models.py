@@ -14,8 +14,6 @@ class CustomUser(AbstractUser):
         return f"{self.customer_id} - {self.username} - {self.email}"
 
 
-def get_upload_to(instance, filename):
-    return f"Product {instance.product_id}/{filename}"
 
 class Product(models.Model):
     """The model responsible for holding the data for the products"""
@@ -23,11 +21,24 @@ class Product(models.Model):
     name = models.CharField(verbose_name="Product Name", max_length=100)
     description = models.TextField(verbose_name="Product Description", max_length=500)
     price = models.DecimalField(verbose_name="Price", max_digits=10, decimal_places=2)
-    image = models.ImageField(verbose_name="Product Image", upload_to=get_upload_to, blank=True, null=True)
     date_added = models.DateTimeField(verbose_name="Date Added", auto_now_add=True)
 
     def __repr__(self) -> str:
         return f"{self.product_id} - {self.name} - {self.price}"
+
+
+
+def get_upload_to(instance, filename):
+    return f"Product {instance.product.product_id}/{filename}"
+
+class ProductImage(models.Model):
+    """This model holds the images for a product"""
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name="Product Image", upload_to=get_upload_to, blank=True, null=True)
+
+    def __repr__(self) -> str:
+        return f"Image(s) pointing to {self.product.name}"
+
 
 class Order(models.Model):
     status = (
@@ -45,5 +56,5 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(verbose_name="Date Ordered", auto_now_add=True)
     status = models.CharField(verbose_name="Status", max_length=50, choices=status, default="Pending")
 
-    # def get_total_order_price(self, buyer_):
-    #     return self.objects.all(buyer=buyer_).aggregate(models.Sum("product_ordered__price"))
+    def get_total_order_price(self, buyer_):
+        return self.objects.all(buyer=buyer_).aggregate(models.Sum("product_ordered__price"))
