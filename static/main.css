@@ -41,24 +41,43 @@ div.detail {
     letter-spacing: 1.5px;
     padding: 10px;
 }
+
 .sample {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+div.sample-def {
+    letter-spacing: .5px;
+    font-size: 14px;
+    font-family: 'Mooli', sans-serif;
+    align-self: flex-start;
+    margin: 10px;
+}
+
 .sample > div {
     font-size: large;
     letter-spacing: 1px;
     color: #000000cd;
 }
-.json-response {
-    font-size: 4px;
+a:link, a:visited, a:active {
+    pointer-events: none;
+    text-decoration: none;
+    color: #ffffff00
+}
+
+div.json-response {
+    border-radius: 2px;
+    border: 1.5px solid #4a4a4a23;
+    font-size: 13px;
     font-weight: 300;
-    font-family: 'Ubuntu', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif;
     background-color: #00000014;
     padding: 20px;
-    color: white;
+    margin-bottom: 20px;
+    /* color: white; */
 }
 
 .json-key {
@@ -89,11 +108,12 @@ div.detail {
 
 button {
     border-radius: 2px;
-    border: 0;
+    border: 1.7px solid #00000020;
     background-color: #fff;
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    padding: 20px 10px;
+    font-size: 16px;
+    padding: 10px 10px;
     transition: all .2s ease-in-out;
 }
 
