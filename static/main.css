@@ -4,6 +4,17 @@
     font-family: 'Lato', sans-serif;
 }
 
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin: 20px;
+}
+.logo > img {
+    height: 100%;
+}
+
 body {
     background: #effff4;
 
@@ -11,6 +22,16 @@ body {
 
 h1, h2, h3 {
     text-align: center;
+}
+
+.main-h1 {
+    margin:20px 0px;
+}
+
+.sub {
+    font-family: 'Mooli', sans-serif;
+    letter-spacing: .7px;
+    color: #00000087;
 }
 
 div.detail {

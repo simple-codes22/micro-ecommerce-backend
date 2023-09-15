@@ -10,9 +10,15 @@ Backend
 {%endblock%}
 
 {%block body%}
-<h1 class="main-h1">Micro E-Commerce backend engine</h1>
+
+{% load static %}
+<div class="logo">
+    <img src={% static 'Logo.png' %} alt="E-commerce logo">
+</div>
+
+<h1 class="main-h1">Micro E-Commerce Backend Engine</h1>
 <div>
-    <h3>
+    <h3 class="sub">
         APIs available for access (accessible to only authorized personnels)
     </h3>
 
