@@ -1,0 +1,75 @@
+{% extends 'Base.html' %}
+
+{%block style%}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'main.css' %} />
+{%endblock%}
+
+{%block title%}
+Backend
+{%endblock%}
+
+{%block body%}
+<h1 class="main-h1">Micro E-Commerce backend engine</h1>
+<div>
+    <h3>
+        APIs available for access (accessible to only authorized personnels)
+    </h3>
+
+    <div class="detail">
+        <div class="listing">
+            <div id="title">User List</div>
+            <div class="sample">
+                <div>Sample response</div>
+                <div class="json-response">
+                <pre>
+                    <code>
+                        {
+                        <span class="json-indent"></span>"id": <span class="json-number">1</span>,
+                        <span class="json-indent"></span>"password": "<span class="json-string">Secret213424</span>",
+                        <span class="json-indent"></span>"last_login": "<span class="json-string">2023-06-17T17:37:34.243788Z</span>",
+                        <span class="json-indent"></span>"is_superuser": <span class="json-boolean">false</span>,
+                        <span class="json-indent"></span>"username": "<span class="json-string">john_doe222</span>",
+                        <span class="json-indent"></span>"first_name": "<span class="json-string">John</span>",
+                        <span class="json-indent"></span>"last_name": "<span class="json-string">Doe</span>",
+                        <span class="json-indent"></span>"is_staff": <span class="json-boolean">false</span>,
+                        <span class="json-indent"></span>"is_active": <span class="json-boolean">true</span>,
+                        <span class="json-indent"></span>"date_joined": "<span class="json-string">2023-05-29T14:42:49.408951Z</span>",
+                        <span class="json-indent"></span>"customer_id": "<span class="json-string">aa9440ac-8b91-4b35-8748-feae074ce835</span>",
+                        <span class="json-indent"></span>"email": "<span class="json-string">john_doe222@gm.com</span>",
+                        <span class="json-indent"></span>"groups": [],
+                        <span class="json-indent"></span>"user_permissions": []
+                        }
+                    </code>
+                    </pre>
+                </div>
+            </div>
+            <div><a href={% url 'core:user-list' %}>View API listing</a><button class="btn">Copy Link</button></div>
+        </div>
+
+        <div class="listing">
+            <div id="title">Product list</div>
+            <div class="sample">
+                <div>Sample response</div>
+                <div class="json-response">
+                    <pre>
+                    {
+                        <span class="json-indent"></span>"product_id": "<span class="json-string">7fbfb24f-5448-429f-87a5-1133847403d3</span>",
+                        <span class="json-indent"></span>"name": "<span class="json-string">Test Product</span>",
+                        <span class="json-indent"></span>"description": "<span class="json-string">This is a test product.</span>",
+                        <span class="json-indent"></span>"price": "<span class="json-number">15.00</span>",
+                        <span class="json-indent"></span>"date_added": "<span class="json-string">2023-05-29T14:43:48.384675Z</span>"
+                    }
+                    </pre>
+                </div>
+            </div>
+            <div><a href={% url 'core:product-list' %}>View API listing</a><button class="btn">Copy Link</button></div>
+        </div>
+
+    </div>
+</div>
+{%endblock%}
+{% block script %}
+{% load static %}
+<script src={% static 'main.js' %}></script>
+{% endblock %}

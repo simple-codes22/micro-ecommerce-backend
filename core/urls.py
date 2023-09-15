@@ -7,8 +7,10 @@ from django.conf import settings
 app_name='core'
 
 urlpatterns = [
+    path('', main_view, name="ui-view"),
     # User List
     path('user/', UserList.as_view(), name="user-list"),
+    # path('user/?format=json', UserList.as_view(), name="user-list-json
     path('user/<str:pk>/', UserDetail.as_view(), name="user-detail"),
 
     # Product data

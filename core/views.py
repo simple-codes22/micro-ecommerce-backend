@@ -1,15 +1,21 @@
 from django.shortcuts import render
 from rest_framework import mixins
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework import generics
 from .models import *
 from .serializers import *
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
+
+def main_view(request, *args, **kwargs):
+    return render(request, "backend-home.html", {})
 
 class ProductList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+    renderer_classes = [JSONRenderer]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -56,6 +62,8 @@ class UserList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    renderer_classes = [JSONRenderer]
+
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
     
@@ -71,6 +79,8 @@ class UserDetail(
     User = get_user_model()
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
@@ -101,6 +111,7 @@ class OrderDetails(
     ):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    renderer_classes = [JSONRenderer]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -111,28 +122,3 @@ class OrderDetails(
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-# @api_view(['GET', 'POST'])
-# def product_list(request):
-#     if request.method == 'GET':
-#         product = Product.objects.all()
-#         serializer = ProductSerializers(product, many=True)
-#         return Response(serializer.data)
-#     elif request.method == 'POST':
-#         serializer = ProductSerializers(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# @api_view(['GET', 'POST'])
-# def user_list(request, ):
-#     if request.method == 'GET':
-#         user = settings.AUTH_USER_MODEL
-#         serializer = UserSerializers(user, many=True)
-#         return Response(serializer.data)
-#     elif request.method == "POST":
-#         serializer = UserSerializers(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

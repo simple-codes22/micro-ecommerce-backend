@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    background: #effff4;
+
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+div.detail {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.detail > div {
+    display: flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.listing {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listing > #title {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    padding: 10px;
+}
+.sample {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sample > div {
+    font-size: large;
+    letter-spacing: 1px;
+    color: #000000cd;
+}
+.json-response {
+    font-size: 4px;
+    font-weight: 300;
+    font-family: 'Ubuntu', sans-serif !important;
+    background-color: #00000014;
+    padding: 20px;
+    color: white;
+}
+
+.json-key {
+    color: #007BFF;
+}
+
+.json-string {
+    color: #28A745;
+}
+
+.json-number {
+    color: #FFC107;
+}
+
+.json-boolean {
+    color: #DC3545;
+}
+
+.json-null {
+    color: #6C757D;
+}
+
+/* Define style for indentation */
+.json-indent {
+    margin-left: 20px;
+}
+
+
+button {
+    border-radius: 2px;
+    border: 0;
+    background-color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    padding: 20px 10px;
+    transition: all .2s ease-in-out;
+}
+
+button:hover {
+    background-color: #9effc5;
+}
