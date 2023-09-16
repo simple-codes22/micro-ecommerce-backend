@@ -28,3 +28,5 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+      env:
+        WHITELIST_ONE: 'http://127.0.0.1:5173'
