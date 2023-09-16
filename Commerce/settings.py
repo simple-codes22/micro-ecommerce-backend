@@ -14,9 +14,9 @@ env.read_env()
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Enabling cors origin permissions to a specific host
 CORS_ORIGIN_ALLOW_ALL = False
@@ -94,6 +94,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'your_db_name', 
+#         'USER': 'postgres',
+#         'PASSWORD': 'your_db_password',
+#         'HOST': '127.0.0.1', 
+#         'PORT': '5432',
+#     }
+# }
 
 
 
