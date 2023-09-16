@@ -29,5 +29,5 @@ jobs:
       run: |
         python manage.py test
       env:
-        SECRET_KEY: '%{{secrets.SECRET_KEY}}'
-        WHITELIST_ONE: '${{secrets.WHITELIST_ONE}}'
+        WHITELIST_ONE: ${{secrets.WHITELIST_ONE}}
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
