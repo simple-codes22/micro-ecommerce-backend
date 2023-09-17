@@ -31,3 +31,9 @@ jobs:
       env:
         WHITELIST_ONE: ${{secrets.WHITELIST_ONE}}
         SECRET_KEY: ${{secrets.SECRET_KEY}}
+        DATABASE_URL: ${{secrets.DATABASE_URL}}
+        PGDATABASE: ${{secrets.PGDATABASE}}
+        PGHOST: ${{secrets.PGHOST}}
+        PGPASSWORD: ${{secrets.PGPASSWORD}}
+        PGPORT: ${{secrets.PGPORT}}
+        PGUSER: ${{secrets.PGUSER}}
