@@ -6,11 +6,9 @@ copyLinks.forEach(elem => {
         console.log(navText);
         navigator.clipboard.writeText(navText);
         elem.textContent = "Link Copied";
-        console.log("Text content changed");
         
         setTimeout(() => {
             elem.textContent = "Copy Link";
-            console.log("Text content returned");
         }, 5000);
 
         return;
