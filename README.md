@@ -1,3 +1,3 @@
 # Micro Commerce Backend Engine
 ## Introduction
-This is a backend engine for micro commerce application. It is built using Django and the Django rest framework. It is a RESTful API that can be used for micro commerce application.
+This project is a micro-ecommerce solution that provides a robust backend API and a user-friendly UI for managing online stores. It empowers businesses to effortlessly list, sell, and track products, while offering customers a seamless shopping experience. Key features include user authentication, product management, shopping cart functionality, order processing, payment integration, and comprehensive analytics. With an emphasis on modularity and scalability, our micro-ecommerce solution is designed to adapt and grow with your business needs, making it the ideal choice for small to medium-sized online retailers.
