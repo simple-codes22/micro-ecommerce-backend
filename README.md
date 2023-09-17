@@ -1,4 +1,6 @@
 # Micro E-Commerce Backend Engine
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Introduction
 This mini project is a micro-ecommerce solution that provides a simple yet scalable backend API managing online stores. It empowers businesses to effortlessly list, sell, and track products, while offering customers a seamless shopping experience. Key features include user authentication, product management, shopping cart functionality, order processing, payment integration, and analytics. With an emphasis on modularity and scalability, the micro e-commerce solution is designed to adapt and grow with business needs.
 
