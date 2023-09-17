@@ -2,5 +2,16 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "containers-us-west-81.railway.app",
+            "port": 6135,
+            "driver": "PostgreSQL",
+            "name": "railway",
+            "database": "railway",
+            "username": "postgres"
+        }
+    ]
 }
