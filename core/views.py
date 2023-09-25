@@ -6,8 +6,13 @@ from rest_framework import generics
 from .models import *  # Import models from the same directory
 from .serializers import *  # Import serializers from the same directory
 from django.contrib.auth import get_user_model
-from django.urls import reverse
+# from django.urls import reverse
+from django.core.mail import send_mail
+from django.conf import settings 
+from django.template.loader import render_to_string
 
+# def email(request, *args, **kwargs):
+#     return render(request, "email-template.html", {})
 
 # Define a view function called 'main_view'
 def main_view(request, *args, **kwargs):
@@ -32,7 +37,7 @@ class ProductList(
     serializer_class = ProductSerializers
     
     # Specify the renderer class for JSON responses
-    renderer_classes = [JSONRenderer]
+    # renderer_classes = [JSONRenderer]
 
     def get(self, request, *args, **kwargs):
         """
@@ -148,7 +153,7 @@ class UserList(
     serializer_class = UserSerializer
     
     # Specify the renderer class for JSON responses
-    renderer_classes = [JSONRenderer]
+    # renderer_classes = [JSONRenderer]
 
     def get(self, request, *args, **kwargs):
         """
@@ -160,6 +165,15 @@ class UserList(
         """
         Handle POST request for creating a new user.
         """
+        # Email sending
+        subject = "Welcome to our store"
+        message = render_to_string("email-template.html", {
+            "name": request.data["username"],
+            "customer_id": request.data["customer_id"],
+        })
+        from_email = settings.EMAIL_HOST_USER
+        to_list = [request.data["email"]]
+        send_mail(subject, message, from_email, to_list, fail_silently=False)
         return self.create(request, *args, **kwargs)
 
 
@@ -249,7 +263,7 @@ class OrderDetails(
     serializer_class = OrderSerializer
     
     # Specify the renderer class for JSON responses
-    renderer_classes = [JSONRenderer]
+    # renderer_classes = [JSONRenderer]
 
     def get(self, request, *args, **kwargs):
         """

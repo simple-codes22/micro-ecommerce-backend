@@ -1,0 +1,39 @@
+{% extends 'Base.html' %}
+
+{%block style %}
+
+{% load static  %}
+<link rel="stylesheet" href="{% static 'email.css' %}">
+{%endblock%}
+
+{%block body%}
+
+<div class="container">
+
+    <h2 class="header">
+        You have successfully registered on our platform
+    </h2>
+
+<div class="content">
+    Thank you {{name}} for registering on our site. We hope you enjoy our products.
+    Your account details have been safely stored. Get ready to shop with us!!!
+</div>
+
+<div>
+    
+    <p>
+        Click the button below to login
+    </p>
+    
+    <a href="#">
+        <button>
+            Login
+        </button>
+    </a>
+
+</div>
+
+
+</div>
+
+{% endblock %}
