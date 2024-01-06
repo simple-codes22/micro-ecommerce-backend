@@ -268,3 +268,70 @@ class OrderDetails(
         Handle DELETE request for deleting an order.
         """
         return self.destroy(request, *args, **kwargs)
+
+
+
+class ReviewList(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    generics.GenericAPIView,
+):
+    """
+    This view class allows listing and creating Review objects.
+    """
+
+    # Queryset for Review objects
+    queryset = Review.objects.all()
+    
+    # Serializer class for Review objects
+    serializer_class = ReviewSerializer
+
+    def get(self, request, *args, **kwargs):
+        """
+        Handle GET request for listing reviews.
+        """
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST request for creating a new review.
+        """
+        return self.create(request, *args, **kwargs)
+
+class ReviewDetails(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    generics.GenericAPIView,
+):
+    """
+    This view class allows retrieving, updating, and deleting Review objects by ID.
+    """
+
+    # Queryset for Review objects
+    queryset = Review.objects.all()
+    
+    # Serializer class for Review objects
+    serializer_class = ReviewSerializer
+    
+    # Specify the renderer class for JSON responses
+    # renderer_classes = [JSONRenderer]
+
+    def get(self, request, *args, **kwargs):
+        """
+        Handle GET request for retrieving review details.
+        """
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        """
+        Handle PUT request for updating review details.
+        """
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Handle DELETE request for deleting a review.
+        """
+        return self.destroy(request, *args, **kwargs)
+

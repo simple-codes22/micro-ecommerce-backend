@@ -99,3 +99,27 @@ class Order(models.Model):
 
         # Return the total price (or 0 if no orders found)
         return total_price or 0
+
+
+class Review(models.Model):
+    # A UUID field for a unique review ID (primary key)
+    review_id = models.UUIDField(
+        verbose_name="Review ID", default=uuid4, primary_key=True, editable=False
+    )
+    # Foreign key relationship with the Product model (reviewed product)
+    product_reviewed = models.ForeignKey(
+        Product, verbose_name="Product Reviewed", on_delete=models.SET_NULL, null=True
+    )
+    # Foreign key relationship with the custom user model (reviewer)
+    reviewer = models.ForeignKey(
+        get_user_model(), verbose_name="Reviewer", on_delete=models.SET_NULL, null=True
+    )
+    # Date and time when the review was added
+    date_added = models.DateTimeField(verbose_name="Date Added", auto_now_add=True)
+    # Review text
+    review = models.TextField(verbose_name="Review", max_length=500)
+    # Rating for the product
+    rating = models.IntegerField(verbose_name="Rating", default=0)
+
+    def __repr__(self) -> str:
+        return f"{self.review_id} - {self.product_reviewed} - {self.reviewer} - {self.rating}"
