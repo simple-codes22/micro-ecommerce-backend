@@ -8,6 +8,7 @@ app_name = "core"
 
 # Define URL patterns
 urlpatterns = [
+    # path("email/", email, name="email"),
     # Default view for the root URL
     path("", main_view, name="ui-view"),
     # User-related URLs

@@ -6,13 +6,12 @@ from rest_framework import generics
 from .models import *  # Import models from the same directory
 from .serializers import *  # Import serializers from the same directory
 from django.contrib.auth import get_user_model
-# from django.urls import reverse
+from django.urls import reverse
 from django.core.mail import send_mail
-from django.conf import settings 
+from Commerce import settings
 from django.template.loader import render_to_string
 
-# def email(request, *args, **kwargs):
-#     return render(request, "email-template.html", {})
+
 
 # Define a view function called 'main_view'
 def main_view(request, *args, **kwargs):
@@ -165,15 +164,24 @@ class UserList(
         """
         Handle POST request for creating a new user.
         """
+        # print(request.data['email'])
         # Email sending
-        subject = "Welcome to our store"
         message = render_to_string("email-template.html", {
             "name": request.data["username"],
             "customer_id": request.data["customer_id"],
         })
-        from_email = settings.EMAIL_HOST_USER
+
         to_list = [request.data["email"]]
-        send_mail(subject, message, from_email, to_list, fail_silently=False)
+        send_mail(
+            "Welcome to our store",
+            message,
+            settings.EMAIL_HOST_USER,
+            to_list,
+            fail_silently=False,
+            auth_user=settings.EMAIL_HOST_USER,
+            auth_password=settings.EMAIL_HOST_PASSWORD,
+        )
+        
         return self.create(request, *args, **kwargs)
 
 
@@ -280,5 +288,69 @@ class OrderDetails(
     def delete(self, request, *args, **kwargs):
         """
         Handle DELETE request for deleting an order.
+        """
+        return self.destroy(request, *args, **kwargs)
+
+class ReviewList(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    generics.GenericAPIView,
+):
+    """
+    This view class allows listing and creating Review objects.
+    """
+
+    # Queryset for Review objects
+    queryset = Review.objects.all()
+    
+    # Serializer class for Review objects
+    serializer_class = ReviewSerializer
+
+    def get(self, request, *args, **kwargs):
+        """
+        Handle GET request for listing reviews.
+        """
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST request for creating a new review.
+        """
+        return self.create(request, *args, **kwargs)
+
+class ReviewDetails(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    generics.GenericAPIView,
+):
+    """
+    This view class allows retrieving, updating, and deleting Review objects by ID.
+    """
+
+    # Queryset for Review objects
+    queryset = Review.objects.all()
+    
+    # Serializer class for Review objects
+    serializer_class = ReviewSerializer
+    
+    # Specify the renderer class for JSON responses
+    # renderer_classes = [JSONRenderer]
+
+    def get(self, request, *args, **kwargs):
+        """
+        Handle GET request for retrieving review details.
+        """
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        """
+        Handle PUT request for updating review details.
+        """
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Handle DELETE request for deleting a review.
         """
         return self.destroy(request, *args, **kwargs)

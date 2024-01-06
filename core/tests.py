@@ -131,3 +131,5 @@ class OrderTestCase(TestCase):
         self.assertEqual(
             self.test_order.status, "Pending", "The status of the order is not correct"
         )
+
+# Adding the Review TestCase later
