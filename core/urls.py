@@ -13,8 +13,9 @@ urlpatterns = [
     # User-related URLs
     path("user/", UserList.as_view(), name="user-list"),  # List of users
     path(
-        "user/<str:pk>/", UserDetail.as_view(), name="user-detail"
+        "user/create", UserCreate.as_view(), name="user-create"
     ),  # User detail by primary key
+    path("user/<str:email>", UserDetail.as_view(), name="user-detail"),
     # Product-related URLs
     path("product/", ProductList.as_view(), name="product-list"),  # List of products
     path(
