@@ -10,6 +10,8 @@ from django.db.models import Sum  # Import Sum for aggregation
 class CustomUser(AbstractUser):
     # A UUID field for a unique customer ID
     customer_id = models.UUIDField(verbose_name="Customer ID", default=uuid4)
+    # Cart field for storing products in the cart (many-to-many relationship with Product)
+    cart = models.ManyToManyField("Product", blank=True)
     # Email field for authentication (unique and required)
     email = models.EmailField(verbose_name="email address", blank=False, unique=True)
     # Specify that the email field is used for authentication
@@ -36,11 +38,12 @@ class Product(models.Model):
     # Price of the product with decimal precision
     price = models.DecimalField(verbose_name="Price", max_digits=10, decimal_places=2)
     # Date and time when the product was added
+    discount = models.IntegerField(verbose_name="Discount", default=0, blank=False, null=False, editable=True)
+    
     date_added = models.DateTimeField(verbose_name="Date Added", auto_now_add=True)
 
     def __repr__(self) -> str:
         return f"{self.product_id} - {self.name} - {self.price}"
-
 
 # Function to determine the upload path for product images
 def get_upload_to(instance, filename):

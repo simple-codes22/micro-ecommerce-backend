@@ -34,8 +34,13 @@ urlpatterns = [
     path(
         "order/<str:pk>", OrderDetails.as_view(), name="order-details"
     ),  # Order detail by primary key
+    path("review/", ReviewList.as_view(), name="review-list"),  # List of reviews
+    path(
+        "review/<str:pk>", ReviewDetails.as_view(), name="review-details"
+    ),  # Review detail by primary key
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # Serve media files during development (DEBUG mode)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
