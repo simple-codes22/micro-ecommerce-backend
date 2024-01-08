@@ -3,4 +3,4 @@ from .models import *
 from django.contrib.auth.admin import UserAdmin
 
 admin.site.register([CustomUser,], UserAdmin)
-admin.site.register([Product, Order, ProductImage])
+admin.site.register([Product, Order, ProductImage, Review])
