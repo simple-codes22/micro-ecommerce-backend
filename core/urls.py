@@ -13,11 +13,13 @@ urlpatterns = [
 
     path("product/", ProductListViewset.as_view({'get': 'list'}), name="product-list"),
 
+    path("search/<str:product_name>", ProductListSearch.as_view({'get': 'retrieve'}), name="search-list"),
+
     path("product/<slug:product_id>", ProductListViewset.as_view({'get': 'retrieve'}), name="product-detail"),
 
     path("user/", UserListViewSet.as_view({"get": "list"}), name="user-list"),
 
-    path("user/<str:username>/<str:password>", UserListViewSet.as_view({'get': 'retrieve'}), name="user-detail"),
+    path("user/<str:email>/<str:password>", UserListViewSet.as_view({'get': 'retrieve'}), name="user-detail"),
 
     path("order/", OrderListViewSet.as_view({'get': 'list'}), name="order-list"),
 
@@ -25,7 +27,7 @@ urlpatterns = [
 
     path("review/", ReviewListViewSet.as_view({'get': 'list'}), name="review-list"),
 
-    path("review/<slug:product_id>", ReviewListViewSet.as_view({"get": 'retrieve'}), name="review-details")
+    path("review/<slug:product_id>", ReviewListViewSet.as_view({"get": 'retrieve'}), name="review-details"),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

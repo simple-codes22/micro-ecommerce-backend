@@ -24,12 +24,20 @@ class ProductListViewset(ViewSet):
         serializer = ProductSerializers(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, product_id=None,):
+    def retrieve(self, request, product_name=None, product_id=None,):
         queryset = Product.objects.all()
         product = get_object_or_404(queryset, product_id=product_id)
         serializer = ProductSerializers(product)
         return Response(serializer.data)
     # def create(self, request, )
+
+class ProductListSearch(ViewSet):
+    renderer_classes = [JSONRenderer]
+    
+    def retrieve(self, request, product_name=None):
+        queryset = Product.objects.filter(name__icontains=product_name)
+        serializer = ProductSerializers(queryset, many=True)
+        return Response(serializer.data)
 
 
 class UserListViewSet(ViewSet):
@@ -40,9 +48,9 @@ class UserListViewSet(ViewSet):
         serializer = [user.username for user in queryset]
         return Response(serializer)
 
-    def retrieve(self, request, username=None, password=None):
+    def retrieve(self, request, email=None, password=None):
         queryset = self.User.objects.all()
-        user = get_object_or_404(queryset, username=username)
+        user = get_object_or_404(queryset, email=email)
         try:
             if user.check_password(password):
                 serializer = UserSerializer(user)
@@ -93,3 +101,4 @@ class ReviewListViewSet(ViewSet):
         queryset = Review.objects.filter(product_reviewed__product_id=product_id)
         serializer = ReviewSerializer(queryset)
         return Response(serializer.data)
+    
