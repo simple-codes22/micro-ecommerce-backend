@@ -10,10 +10,28 @@ app_name = "core"
 urlpatterns = [
     # Default view for the root URL
     path("", main_view, name="ui-view"),
+
     path("product/", ProductListViewset.as_view({'get': 'list'}), name="product-list"),
+
     path("product/<slug:product_id>", ProductListViewset.as_view({'get': 'retrieve'}), name="product-detail"),
+
     path("user/", UserListViewSet.as_view({"get": "list"}), name="user-list"),
-    path("user/<str:username>/<str:password>", UserListViewSet.as_view({'get': 'retrieve'}), name="user-detail")
+
+    path("user/<str:username>/<str:password>", UserListViewSet.as_view({'get': 'retrieve'}), name="user-detail"),
+
+    path("order/<slug:product_id>", OrderListViewSet.as_view({"get": "retrieve"}), name="order-details"),
+
+    path("review/<slug:product_id>", ReviewViewSet.as_view({"get": 'retrieve'}), name="review-details")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     # # User-related URLs
     # path("user/", UserList.as_view(), name="user-list"),  # List of users
     # path(
