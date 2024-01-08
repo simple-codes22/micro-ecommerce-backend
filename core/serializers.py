@@ -22,6 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()  # Get the custom user model
         fields = "__all__"  # Include all fields in the serialized representation
+        extra_kwargs = {"password": {"write_only": True}}
 
 
 # Serializer for the Order model
