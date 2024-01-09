@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 from uuid import uuid4
 from django.contrib.auth import get_user_model
 from django.db.models import Sum  # Import Sum for aggregation
+from .managers import CustomUserManager
+
 
 
 # Define a custom user model by extending AbstractUser
@@ -20,6 +22,7 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = [
         "username",
     ]
+    objects = CustomUserManager()
 
     def __repr__(self) -> str:
         return f"{self.customer_id} - {self.username} - {self.email}"

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ViewSet
+from rest_framework.views import APIView
 from.serializers import *
 from .models import *
 
@@ -39,6 +40,11 @@ class ProductListSearch(ViewSet):
         serializer = ProductSerializers(queryset, many=True)
         return Response(serializer.data)
 
+# class UserAuth(APIView):
+#     renderer_classes = [JSONRenderer]
+
+#     def post(self, request,):
+        
 
 class UserListViewSet(ViewSet):
     renderer_classes = [JSONRenderer]
@@ -48,18 +54,19 @@ class UserListViewSet(ViewSet):
         serializer = [user.username for user in queryset]
         return Response(serializer)
 
-    def retrieve(self, request, email=None, password=None):
-        queryset = self.User.objects.all()
-        user = get_object_or_404(queryset, email=email)
-        try:
-            if user.check_password(password):
-                serializer = UserSerializer(user)
-                return Response(serializer.data)
-        except Exception:
-            return print("Did Not Work: ", Exception)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-        
+    # # def retrieve(self, request, email=None, password=None):
+    # def create(self, request,):
+    #     queryset = self.User.objects.all()
+    #     user = get_object_or_404(queryset, email=email)
+    #     try:
+    #         if user.check_password(password):
+    #             serializer = UserSerializer(user)
+    #             return Response(serializer.data)
+    #     except Exception:
+    #         return print("Did Not Work: ", Exception)
+    #     serializer = UserSerializer(user)
+    #     return Response(serializer.data)
+
 
 class ProductImageListViewSet(ViewSet):
     renderer_classes = [JSONRenderer]
