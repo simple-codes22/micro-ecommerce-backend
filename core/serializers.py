@@ -1,7 +1,21 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+
+class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        token['username'] = user.username
+        token['customer_id'] = f"{user.customer_id}"
+        token['email'] = user.email
+        # token['cart'] = list(user.cart)
+        token['date_joined'] = f"{user.date_joined}"
+
+        return token
 
 # Serializer for the Product model
 class ProductSerializers(serializers.ModelSerializer):

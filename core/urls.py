@@ -3,9 +3,9 @@ from .views import *  # Import views from your app
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
 )
+from .serializers import UserTokenObtainPairSerializer
 
 
 # Define the app name for namespacing
@@ -16,7 +16,7 @@ urlpatterns = [
     # Default view for the root URL
     path("", main_view, name="ui-view"),
 
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/', UserTokenObtainPairView.as_view(), name='token_obtain_pair'),
 
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 

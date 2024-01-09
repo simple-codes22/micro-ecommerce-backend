@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ViewSet
 from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
 from.serializers import *
 from .models import *
 
@@ -53,6 +54,9 @@ class UserListViewSet(ViewSet):
         queryset = self.User.objects.all()
         serializer = [user.username for user in queryset]
         return Response(serializer)
+
+class UserTokenObtainPairView(TokenObtainPairView):
+    serializer_class = UserTokenObtainPairSerializer
 
     # # def retrieve(self, request, email=None, password=None):
     # def create(self, request,):
