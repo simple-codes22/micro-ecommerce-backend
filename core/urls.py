@@ -28,7 +28,9 @@ urlpatterns = [
 
     path("user/", UserListViewSet.as_view({"get": "list"}), name="user-list"),
 
-    path("user/<str:email>/<str:password>", UserListViewSet.as_view({'get': 'retrieve'}), name="user-detail"),
+    # path("cart/<slug:customer_id>", CartListViewSet.as_view({'get': 'retrieve'}), name="cart-list"),
+
+    path("user/<slug:customer_id>", UserListViewSet.as_view({'get': 'retrieve'}), name="user-detail"),
 
     path("order/", OrderListViewSet.as_view({'get': 'list'}), name="order-list"),
 

@@ -4,6 +4,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ViewSet
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from.serializers import *
 from .models import *
 
@@ -41,19 +42,27 @@ class ProductListSearch(ViewSet):
         serializer = ProductSerializers(queryset, many=True)
         return Response(serializer.data)
 
-# class UserAuth(APIView):
-#     renderer_classes = [JSONRenderer]
 
-#     def post(self, request,):
         
+
+# class UserListViewSet(ViewSet):
+#     renderer_classes = [JSONRenderer]
+#     User = get_user_model()
+#     permission_classes = [IsAdminUser]
+#     def list(self, request):
+#         queryset = self.User.objects.all()
+#         serializer = [user.username for user in queryset]
+#         return Response(serializer)
 
 class UserListViewSet(ViewSet):
     renderer_classes = [JSONRenderer]
+    # permission_classes = [IsAuthenticated]
     User = get_user_model()
-    def list(self, request):
-        queryset = self.User.objects.all()
-        serializer = [user.username for user in queryset]
-        return Response(serializer)
+
+    def retrieve(self, request, customer_id=None):
+        queryset = self.User.objects.get(customer_id=customer_id)
+        serializer = UserSerializer(queryset)
+        return Response(serializer.data)
 
 class UserTokenObtainPairView(TokenObtainPairView):
     serializer_class = UserTokenObtainPairSerializer

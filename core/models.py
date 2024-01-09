@@ -17,12 +17,15 @@ class CustomUser(AbstractUser):
     # Email field for authentication (unique and required)
     email = models.EmailField(verbose_name="email address", blank=False, unique=True)
     # Specify that the email field is used for authentication
+    # cart_count = models.IntegerField(default=0, null=False, )
+
     USERNAME_FIELD = "email"
     # Additional required fields during user creation
     REQUIRED_FIELDS = [
         "username",
     ]
     objects = CustomUserManager()
+
 
     def __repr__(self) -> str:
         return f"{self.customer_id} - {self.username} - {self.email}"

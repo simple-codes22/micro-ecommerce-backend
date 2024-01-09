@@ -21,9 +21,9 @@ ALLOWED_HOSTS = ['*']
 
 # Enabling cors origin permissions to a specific host
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    env("WHITELIST_ONE")
-]
+# CORS_ORIGIN_WHITELIST = [
+#     env("WHITELIST_ONE")
+# ]
 
 
 # SECURITY WARNING: keep the secret key used in production secret!

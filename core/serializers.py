@@ -12,7 +12,7 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['customer_id'] = f"{user.customer_id}"
         token['email'] = user.email
-        # token['cart'] = list(user.cart)
+        # token['cart'] = len(user.cart)
         token['date_joined'] = f"{user.date_joined}"
 
         return token
